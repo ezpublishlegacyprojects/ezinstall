@@ -1,21 +1,34 @@
 <?php
 
 $http = eZHTTPTool::instance();
+$importRole = false;
 
-$importFile =  eZHTTPFile::fetch( 'roleImportFile' );
-
-
-
-if( !is_null( $importFile ) )
+if( $http->hasPostVariable( 'ImportRoleButton' ) )
 {
-    $importFileName = $importFile->attribute( 'filename' );
-    $importRoleContent = Spyc::YAMLLoad( $importFileName );
-    $siteInstall = new eZSiteInstaller();
-    $siteInstall->updateRoles( array( 'roles' => $importRoleContent ) );
+    $importFile =  eZHTTPFile::fetch( 'roleImportFile' );
+
+    if( !is_null( $importFile ) )
+    {
+        $importFileName = $importFile->attribute( 'filename' );
+        $importRoleContent = Spyc::YAMLLoad( $importFileName );
+        $siteInstall = new eZSiteInstaller();
+        $siteInstall->updateRoles( array( 'roles' => $importRoleContent ) );
+        $importRole = true;
+    }
+}
+elseif( $http->hasPostVariable( 'RedirectRoleList' ) )
+{
+    $module = eZModule::findModule( 'role' );
+    $module->redirectToView( 'list' );
+    $redirectToView = $module->redirectURI();
+    eZURI::transformURI( $redirectToView );
+    eZHTTPTool::redirect( $redirectToView );
 }
 
 require_once( 'kernel/common/template.php' );
 $tpl = templateInit();
+
+$tpl->setVariable( 'role_import', $importRole );
 
 $Result = array();
 

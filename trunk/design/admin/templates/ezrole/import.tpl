@@ -9,7 +9,10 @@
 {* DESIGN: Header END *}</div></div></div></div></div></div>
 
 {* DESIGN: Content START *}<div class="box-ml"><div class="box-mr"><div class="box-content">
-{if $role_datas|is_array}
+{if $role_import}
+    <p>
+        {'The roles will be imported'|i18n('ezrole')}
+    </p>
 {else}
     <label for="role_import_file">Label</label>
     <input type="file" name="roleImportFile" />
@@ -18,7 +21,11 @@
 <div class="controlbar">
 {* DESIGN: Control bar START *}<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
 <div class="block">
-        <input class="button" type="submit" name="ExportRoleButton" value="{'Import Role'|i18n( 'design/admin/role/list' )}" title="{'Import a role.'|i18n( 'design/admin/role/list' )}" />
+{if $role_import}
+        <input class="button" type="submit" name="RedirectRoleList" value="{'Return to the role list'|i18n( 'design/admin/role/list' )}" title="{'Return to the role list'|i18n( 'design/admin/role/list' )}" />
+{else}
+        <input class="button" type="submit" name="ImportRoleButton" value="{'Import Role'|i18n( 'design/admin/role/list' )}" title="{'Import a role.'|i18n( 'design/admin/role/list' )}" />
+        {/if}
     </form>
 </div>
 {* DESIGN: Control bar END *}</div></div></div></div></div></div>

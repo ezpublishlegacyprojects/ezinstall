@@ -44,6 +44,7 @@ require_once( 'kernel/common/template.php' );
 $tpl = templateInit();
 
 $tpl->setVariable( 'roles', $roleList );
+$tpl->setVariable( 'role_count', count( $roleList ) );
 
 $Result = array();
 
