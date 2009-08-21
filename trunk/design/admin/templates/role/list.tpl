@@ -1,3 +1,4 @@
+<form name="roles" action={concat( $module.functions.list.uri, '/' )|ezurl} method="post" >
 {let number_of_items=min( ezpreference( 'admin_role_list_limit' ), 3)|choose( 10, 10, 25, 50 )}
 
 <div class="context-block">
@@ -79,7 +80,6 @@
 {* DESIGN: Control bar START *}<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
 <div class="block">
     <div class="left">
-    <form name="roles" action={concat( $module.functions.list.uri, '/' )|ezurl} method="post" >
         <input class="button" type="submit" name="RemoveButton" value="{'Remove selected'|i18n( 'design/admin/role/list' )}" title="{'Remove selected roles.'|i18n( 'design/admin/role/list' )}" />
         <input class="button" type="submit" name="NewButton" value="{'New role'|i18n( 'design/admin/role/list' )}" title="{'Create a new role.'|i18n( 'design/admin/role/list' )}" />
     </form>
