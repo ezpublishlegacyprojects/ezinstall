@@ -1,14 +1,16 @@
 <?php
+
+
 /**
-   * Spyc -- A Simple PHP YAML Class
-   * @version 0.4.1
-   * @author Chris Wanstrath <chris@ozmm.org>
-   * @author Vlad Andersen <vlad@oneiros.ru>
-   * @link http://spyc.sourceforge.net/
-   * @copyright Copyright 2005-2006 Chris Wanstrath, 2006-2009 Vlad Andersen
-   * @license http://www.opensource.org/licenses/mit-license.php MIT License
-   * @package Spyc
-   */
+ * Spyc -- A Simple PHP YAML Class
+ * @version 0.4.1
+ * @author Chris Wanstrath <chris@ozmm.org>
+ * @author Vlad Andersen <vlad@oneiros.ru>
+ * @link http://spyc.sourceforge.net/
+ * @copyright Copyright 2005-2006 Chris Wanstrath, 2006-2009 Vlad Andersen
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @package Spyc
+*/
 
 if (!function_exists('spyc_load')) {
   /**

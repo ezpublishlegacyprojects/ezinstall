@@ -2,7 +2,7 @@
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 // SOFTWARE NAME: eZ Role
-// SOFTWARE RELEASE: 1.x
+// SOFTWARE RELEASE: 1.0.0 alpha
 // COPYRIGHT NOTICE: Copyright (C) Frédéric DAVID <fdavid@kaliop.com>
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
