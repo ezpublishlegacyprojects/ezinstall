@@ -14,16 +14,16 @@ if( $http->hasPostVariable( 'ExportIDArray' ) )
         foreach( $roleObject->policyList() as $policyObject )
         {
             $policyContent = array( 'module' => $policyObject->attribute( 'module_name' ),
-                                    'view' => $policyObject->attribute( 'function_name' )
+                                    'function' => $policyObject->attribute( 'function_name' )
                                     );
             $limitationArray = array();
             foreach( $policyObject->attribute( 'limitations' ) as $limitationObject )
             {
-                $limitationArray[ $limitationObject->attribute( 'identifier' ) ] = $limitationObject->allValuesAsString();
+                $limitationArray[ $limitationObject->attribute( 'identifier' ) ] = explode( ',', $limitationObject->allValuesAsString() );
             }
 
             if( count( $limitationArray ) > 0 )
-                $policyContent['limitations'] = $limitationArray;
+                $policyContent['limitation'] = $limitationArray;
             $policiesContent[] = $policyContent;
         }
         $roleContent['policies'] = $policiesContent;
@@ -32,8 +32,9 @@ if( $http->hasPostVariable( 'ExportIDArray' ) )
     }
 
     $YAMLData = Spyc::YAMLDump( $exportRoles );
-    eZFile::create( 'role_export.txt', false, $YAMLData );
-    eZFile::download( 'role_export.txt' );
+    $fileName = 'role_'.$roleContent['name'].'.txt';
+    eZFile::create( $fileName , false, $YAMLData );
+    eZFile::download( $fileName );
 }
 
 $roleList = eZRole::fetchList();
@@ -45,6 +46,12 @@ $tpl = templateInit();
 $tpl->setVariable( 'roles', $roleList );
 
 $Result = array();
+
+$Result['path'] = array( array( 'url' => 'role/list',
+                                'text' => ezi18n( 'kernel/role', 'Role list' ) ),
+                        array( 'url' => 'ezrole/export',
+                                'text' => ezi18n( 'ezrole', 'Export a role' ) )
+                        );
 
 $Result['content'] = $tpl->fetch( 'design:ezrole/export.tpl' );
 
