@@ -10,13 +10,8 @@ if( !is_null( $importFile ) )
 {
     $importFileName = $importFile->attribute( 'filename' );
     $importRoleContent = Spyc::YAMLLoad( $importFileName );
-
-    echo "<pre>";
-    var_dump( $importRoleContent );
-    echo "</pre>";
     $siteInstall = new eZSiteInstaller();
     $siteInstall->updateRoles( array( 'roles' => $importRoleContent ) );
-
 }
 
 require_once( 'kernel/common/template.php' );
