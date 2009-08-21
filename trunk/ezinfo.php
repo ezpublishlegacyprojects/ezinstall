@@ -29,7 +29,7 @@ class ezroleInfo
     static function info()
     {
         return array( 'Name'      => 'eZ Role',
-                      'Version'   => '1.0.0 beta',
+                      'Version'   => '1.0.0 alpha',
                       'Copyright' => 'Copyright (C) 2009 Frédéric DAVID',
                       'License'   => 'GNU General Public License v2.0'
                     );
